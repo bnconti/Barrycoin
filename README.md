@@ -1,2 +1,2 @@
 # Barrycoin
-Una criptomoneda simple con propósitos púramente ilustrativos. Basado en [Savjeecoin](https://github.com/SavjeeTutorials/SavjeeCoin).
+Una implementación simple de blockchain con propósitos púramente ilustrativos. Basado en [Savjeecoin](https://github.com/SavjeeTutorials/SavjeeCoin).
