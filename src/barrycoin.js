@@ -7,14 +7,10 @@ class Transaccion{
         this.receptor = receptor;
         this.cantidadMonedas = cantidadMonedas;
     }
-
-	setCantidadMonedas(cantidadMonedas) {
-		this.cantidadMonedas = cantidadMonedas;
-	}
 }
 
 class Bloque {
-    constructor(timestamp, transacciones, hashPrevio = '') {
+    constructor(timestamp, transacciones, hashPrevio) {
         this.hashPrevio = hashPrevio;
         this.timestamp = timestamp;
         this.transacciones = transacciones;
@@ -28,7 +24,7 @@ class Bloque {
 
     minarBloque(dificultad) {
 		/*	Mientras no encuentre un hash válido de acuerdo a la dificultad (cant. de ceros buscados), 
-		aumento el nounce en 1 (caso contrario calcularía siempre el mismo hash) y vuelvo a intentar.	*/
+		aumento el nounce en 1 (caso contrario calcularía siempre el mismo hash).	*/
 
 		var tiempoInicio = Date.now()
         
@@ -49,7 +45,7 @@ class Blockchain{
 
         this.dificultad = 4;	
 		/* determina la cant. de ceros con la que tiene que iniciar
-		el hash. a mayor cantidadMonedas, más difícil será encontrar
+		el hash. a mayor dificultad, más difícil será encontrar
 		un hash que cumpla con lo requerido. */
         
 		this.transaccionesPendientes = [];	
@@ -85,7 +81,7 @@ class Blockchain{
         ];
     }
 
-    crearTransaccion(transaccion){
+    pushearTransaccion(transaccion){
         this.transaccionesPendientes.push(transaccion);
     }
 
@@ -131,7 +127,7 @@ class Blockchain{
 }
 
 let BarryCoin = new Blockchain();
-BarryCoin.crearTransaccion(new Transaccion('Barry', 'Frank', 100));
+BarryCoin.pushearTransaccion(new Transaccion('Barry', 'Frank', 100));
 
 console.log('########################################');
 console.log('Barry le envía 100 monedas a Frank. Bruno mina la transacción.');
@@ -143,7 +139,7 @@ console.log('El balance del pizzero es', BarryCoin.getBalance('pizzero'));
 console.log('El balance de Bruno es', BarryCoin.getBalance('Bruno'));
 
 console.log('\n########################################');
-BarryCoin.crearTransaccion(new Transaccion('Frank', 'pizzero', 50));
+BarryCoin.pushearTransaccion(new Transaccion('Frank', 'pizzero', 50));
 console.log('Frank le paga 50 monedas al pizzero. Bruno vuelve a minar la transacción.')
 BarryCoin.minarTransaccionesPendientes('Bruno');
 console.log('Bruno minó tanto la transferencia de Frank al pizzero como su recompensa anterior. El sistema le vuelve a pagar 1 moneda.');
