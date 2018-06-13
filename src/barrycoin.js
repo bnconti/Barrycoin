@@ -47,7 +47,7 @@ class Blockchain{
         this.chain = [this.crearGenesis()];
 		// crea el blockchain, siendo genesis el bloque padre.
 
-        this.dificultad = 3;	
+        this.dificultad = 4;	
 		/* determina la cant. de ceros con la que tiene que iniciar
 		el hash. a mayor cantidadMonedas, más difícil será encontrar
 		un hash que cumpla con lo requerido. */
